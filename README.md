@@ -1,4 +1,4 @@
-# Business Messages: curl
+# Business Messages: curl snippets
 
 These code snippets demonstrate how to perform operations with the Business Messages API using curl commands.
 
