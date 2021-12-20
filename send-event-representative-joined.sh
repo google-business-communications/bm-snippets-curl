@@ -12,22 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# This code sends a text message to the user.
-# Read more: https://developers.google.com/business-communications/business-messages/guides/how-to/message/send?hl=en#text
+# This code sends a REPRESENTATIVE_JOINED event to the user.
+# Read more: https://developers.google.com/business-communications/business-messages/guides/how-to/message/events#send
 
 # Replace the __CONVERSATION_ID__ with a conversation id that you can send messages to
 # Make sure a service account key file exists at ./service_account_key.json
 
-curl -X POST "https://businessmessages.googleapis.com/v1/conversations/__CONVERSATION_ID__/messages" \
+curl -X POST "https://businessmessages.googleapis.com/v1/conversations/__CONVERSATION_ID__/events?eventId=6a0af2c6-787d-4097-870d-93fe20351747" \
 -H "Content-Type: application/json" \
 -H "User-Agent: curl/business-messages" \
 -H "`oauth2l header --json ./service_account_key.json businessmessages`" \
 -d "{
-  'messageId': '$(uuidgen)',
-  'text': 'Hello world!',
+  'eventType': 'REPRESENTATIVE_JOINED',
   'representative': {
     'avatarImage': 'https://developers.google.com/identity/images/g-logo.png',
     'displayName': 'Chatbot',
-    'representativeType': 'BOT'
+    'representativeType': 'HUMAN'
   }
 }"

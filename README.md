@@ -1,6 +1,6 @@
 # Business Messages: curl snippets
 
-These code snippets demonstrate how to perform operations with the Business Messages API using curl commands.
+These code snippets demonstrate how to perform operations with the Business Messages API using curl from the command line.
 
 This project contains multiple examples. Each file contains a single operation with the Business Messages API.
 
@@ -14,8 +14,8 @@ The documentation for the Business Messages API can be found [here](https://deve
 
 You must have the following software installed on your machine:
 
-- [Google Cloud SDK](https://cloud.google.com/sdk/) (aka gcloud)
 - [curl](https://curl.se/download.html)
+- [oauth2l](https://github.com/google/oauth2l)
 
 ## Before you begin
 

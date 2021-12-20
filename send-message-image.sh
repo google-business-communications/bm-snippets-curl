@@ -1,4 +1,21 @@
-# Replace the __CONVERSATION_ID__
+# Copyright 2021 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     https://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This code sends an image to the user with a fallback text.
+# Read more: https://developers.google.com/business-communications/business-messages/guides/how-to/message/send?hl=en#images
+
+# Replace the __CONVERSATION_ID__ with a conversation id that you can send messages to
 # Make sure a service account key file exists at ./service_account_key.json
 
 curl -X POST "https://businessmessages.googleapis.com/v1/conversations/__CONVERSATION_ID__/messages" \
@@ -6,9 +23,9 @@ curl -X POST "https://businessmessages.googleapis.com/v1/conversations/__CONVERS
 -H "User-Agent: curl/business-messages" \
 -H "`oauth2l header --json ./service_account_key.json businessmessages`" \
 -d "{
-    'messageId': '86b11a9c-6d29-499a-b516-444e9d2a5543',
+    'messageId': '$(uuidgen)',
     'representative': {
-      'avatarImage': 'https://lh3.googleusercontent.com/LjlQXZGF-3C0yv99xAKpv942l62ZV8nhG59rR8PXbqR_ue2_AJY67X7dlEKi_a21vgswYqVD0E7fdFYcku4uQjDncYVSVA65IUBVRm4=w153',
+      'avatarImage': 'https://developers.google.com/identity/images/g-logo.png',
       'displayName': 'Chatbot',
       'representativeType': 'BOT'
     },
