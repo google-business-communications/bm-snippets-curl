@@ -22,7 +22,7 @@
 curl -X POST "https://businessmessages.googleapis.com/v1/conversations/__CONVERSATION_ID__/messages" \
 -H "Content-Type: application/json" \
 -H "User-Agent: curl/business-messages" \
--H "`oauth2l header --json ./service_account_key.json businessmessages`" \
+-H "$(oauth2l header --json ./service_account_key.json businessmessages)" \
 -d "{
     'messageId': '$(uuidgen)',
     'text': 'Hello world!',

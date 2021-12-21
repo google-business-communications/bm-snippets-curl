@@ -21,7 +21,7 @@
 curl -X POST "https://businessmessages.googleapis.com/v1/conversations/__CONVERSATION_ID__/events?eventId=6a0af2c6-787d-4097-870d-93fe20351747" \
 -H "Content-Type: application/json" \
 -H "User-Agent: curl/business-messages" \
--H "`oauth2l header --json ./service_account_key.json businessmessages`" \
+-H "$(oauth2l header --json ./service_account_key.json businessmessages)" \
 -d "{
   'eventType': 'TYPING_STARTED',
   'representative': {
