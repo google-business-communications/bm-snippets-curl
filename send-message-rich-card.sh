@@ -18,46 +18,46 @@
 # Replace the __CONVERSATION_ID__ with a conversation id that you can send messages to
 # Make sure a service account key file exists at ./service_account_key.json
 
-curl -X POST "https://businessmessages.googleapis.com/v1/conversations/__CONVERSATION_ID__/messages" \
+curl --http1.1 -X POST "https://businessmessages.googleapis.com/v1/conversations/__CONVERSATION_ID__/messages" \
 -H "Content-Type: application/json" \
 -H "User-Agent: curl/business-messages" \
 -H "$(oauth2l header --json ./service_account_key.json businessmessages)" \
--d "{
-    'messageId': '$(uuidgen)',
-    'representative': {
-      'avatarImage': 'https://developers.google.com/identity/images/g-logo.png',
-      'displayName': 'Chatbot',
-      'representativeType': 'BOT'
-    },
-    'fallback': 'Hello, world!\nSent with Business Messages\n\nReply with \"Suggestion #1\" or \"Suggestion #2\"',
-    'richCard': {
-      'standaloneCard': {
-        'cardContent': {
-          'title': 'Hello, world!',
-          'description': 'Sent with Business Messages.',
-          'media': {
-            'height': 'TALL',
-            'contentInfo':{
-              'altText': 'Google logo',
-              'fileUrl': 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
-              'forceRefresh': 'false'
+-d '{
+  "messageId": "'$(uuidgen)'",
+  "representative": {
+    "avatarImage": "https://developers.google.com/identity/images/g-logo.png",
+    "displayName": "Chatbot",
+    "representativeType": "BOT"
+  },
+  "fallback": "Hello, world!\nSent with Business Messages\n\nReply with \"Suggestion #1\" or \"Suggestion #2\"",
+  "richCard": {
+    "standaloneCard": {
+      "cardContent": {
+        "title": "Hello, world!",
+        "description": "Sent with Business Messages.",
+        "media": {
+          "height": "TALL",
+          "contentInfo":{
+            "altText": "Google logo",
+            "fileUrl": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+            "forceRefresh": false
+          }
+        },
+        "suggestions": [
+          {
+            "reply": {
+              "text": "Suggestion #1",
+              "postbackData": "suggestion_1"
             }
           },
-          'suggestions': [
-            {
-              'reply': {
-                'text': 'Suggestion #1',
-                'postbackData': 'suggestion_1'
-              }
-            },
-            {
-              'reply': {
-                'text': 'Suggestion #2',
-                'postbackData': 'suggestion_2'
-              }
+          {
+            "reply": {
+              "text": "Suggestion #2",
+              "postbackData": "suggestion_2"
             }
-          ]
-        }
+          }
+        ]
       }
     }
-  }"
+  }
+}'

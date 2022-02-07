@@ -18,61 +18,56 @@
 # Replace the __CONVERSATION_ID__ with a conversation id that you can send messages to
 # Make sure a service account key file exists at ./service_account_key.json
 
-curl -X POST "https://businessmessages.googleapis.com/v1/conversations/__CONVERSATION_ID__/messages" \
+curl --http1.1 -X POST "https://businessmessages.googleapis.com/v1/conversations/__CONVERSATION_ID__/messages" \
 -H "Content-Type: application/json" \
 -H "User-Agent: curl/business-messages" \
 -H "$(oauth2l header --json ./service_account_key.json businessmessages)" \
--d "{
-    'messageId': '$(uuidgen)',
-    'representative': {
-      'avatarImage': 'https://developers.google.com/identity/images/g-logo.png',
-      'displayName': 'Chatbot',
-      'representativeType': 'BOT'
-    },
-    'fallback': 'Card #1\nThe description for card #1\n\nCard #2\nThe description for card #2\n\nReply with \"Card #1\" or \"Card #2\"',
-    'richCard': {
-      'carouselCard': {
-        'cardWidth': 'MEDIUM',
-        'cardContents': [
-          {
-            'title': 'Card #1',
-            'description': 'The description for card #1',
-            'suggestions': [
-              {
-                'reply': {
-                  'text': 'Card #1',
-                  'postbackData': 'card_1'
-                }
-              }
-            ],
-            'media': {
-              'height': 'MEDIUM',
-              'contentInfo': {
-                'fileUrl': 'https://storage.googleapis.com/kitchen-sink-sample-images/cute-dog.jpg',
-                'forceRefresh': 'false',
-              }
-            }
-          },
-          {
-            'title': 'Card #2',
-            'description': 'The description for card #2',
-            'suggestions': [
-              {
-                'reply': {
-                  'text': 'Card #2',
-                  'postbackData': 'card_2'
-                }
-              }
-            ],
-            'media': {
-              'height': 'MEDIUM',
-              'contentInfo': {
-                'fileUrl': 'https://storage.googleapis.com/kitchen-sink-sample-images/elephant.jpg',
-                'forceRefresh': 'false',
-              }
-            }
-          }
-        ]
-      }
-    }
-  }"
+-d '{
+	"messageId": "'$(uuidgen)'",
+	"representative": {
+		"avatarImage": "https://developers.google.com/identity/images/g-logo.png",
+		"displayName": "Chatbot",
+		"representativeType": "BOT"
+	},
+	"fallback": "Card #1\nThe description for card #1\n\nCard #2\nThe description for card #2\n\nReply with \"Card #1\" or \"Card #2\"",
+	"richCard": {
+		"carouselCard": {
+			"cardWidth": "MEDIUM",
+			"cardContents": [{
+					"title": "Card #1",
+					"description": "The description for card #1",
+					"suggestions": [{
+						"reply": {
+							"text": "Card #1",
+							"postbackData": "card_1"
+						}
+					}],
+					"media": {
+						"height": "MEDIUM",
+						"contentInfo": {
+							"fileUrl": "https://storage.googleapis.com/kitchen-sink-sample-images/cute-dog.jpg",
+							"forceRefresh": false
+						}
+					}
+				},
+				{
+					"title": "Card #2",
+					"description": "The description for card #2",
+					"suggestions": [{
+						"reply": {
+							"text": "Card #2",
+							"postbackData": "card_2"
+						}
+					}],
+					"media": {
+						"height": "MEDIUM",
+						"contentInfo": {
+							"fileUrl": "https://storage.googleapis.com/kitchen-sink-sample-images/elephant.jpg",
+							"forceRefresh": false
+						}
+					}
+				}
+			]
+		}
+	}
+}'

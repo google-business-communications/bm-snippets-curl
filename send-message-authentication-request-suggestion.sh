@@ -22,30 +22,30 @@
 # Replace the __CODE_CHALLENGE__
 # Replace the __SCOPE__
 
-curl -X POST "https://businessmessages.googleapis.com/v1/conversations/__CONVERSATION_ID__/messages" \
+curl --http1.1 -X POST "https://businessmessages.googleapis.com/v1/conversations/__CONVERSATION_ID__/messages" \
 -H "Content-Type: application/json" \
 -H "User-Agent: curl/business-messages" \
 -H "$(oauth2l header --json ./service_account_key.json businessmessages)" \
--d "{
-    'messageId': '$(uuidgen)',
-    'text': 'Sign in to continue the conversation.',
-    'fallback': 'Visit support.growingtreebank.com to continue.',
-    'suggestions': [
-      {
-        'authenticationRequest': {
-          'oauth': {
-            'clientId': '__CLIENT_ID__',
-            'codeChallenge': '__CODE_CHALLENGE__',
-            'scopes': [
-              '__SCOPE__',
-            ],
-          },
-        },
-      },
-    ],
-    'representative': {
-      'avatarImage': 'https://developers.google.com/identity/images/g-logo.png',
-      'displayName': 'Chatbot',
-      'representativeType': 'BOT'
+-d '{
+  "messageId": "'$(uuidgen)'",
+  "text": "Sign in to continue the conversation.",
+  "fallback": "Visit support.growingtreebank.com to continue.",
+  "suggestions": [
+    {
+      "authenticationRequest": {
+        "oauth": {
+          "clientId": "__CLIENT_ID__",
+          "codeChallenge": "__CODE_CHALLENGE__",
+          "scopes": [
+            "__SCOPE__"
+          ]
+        }
+      }
     }
-  }"
+  ],
+  "representative": {
+    "avatarImage": "https://developers.google.com/identity/images/g-logo.png",
+    "displayName": "Chatbot",
+    "representativeType": "BOT"
+  }
+}'

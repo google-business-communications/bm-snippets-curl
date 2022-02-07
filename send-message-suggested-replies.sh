@@ -18,31 +18,31 @@
 # Replace the __CONVERSATION_ID__ with a conversation id that you can send messages to
 # Make sure a service account key file exists at ./service_account_key.json
 
-curl -X POST "https://businessmessages.googleapis.com/v1/conversations/__CONVERSATION_ID__/messages" \
+curl --http1.1 -X POST "https://businessmessages.googleapis.com/v1/conversations/__CONVERSATION_ID__/messages" \
 -H "Content-Type: application/json" \
 -H "User-Agent: curl/business-messages" \
 -H "$(oauth2l header --json ./service_account_key.json businessmessages)" \
--d "{
-    'messageId': '$(uuidgen)',
-    'text': 'Hello, world!',
-    'fallback': 'Hello, world!\n\nReply with \"Hello\" or \"Hi!\"',
-    'suggestions': [
-      {
-        'reply': {
-          'text': 'Hello',
-          'postbackData': 'hello-formal',
-        },
-      },
-      {
-        'reply': {
-          'text': 'Hi!',
-          'postbackData': 'hello-informal',
-        },
-      },
-    ],
-    'representative': {
-      'avatarImage': 'https://developers.google.com/identity/images/g-logo.png',
-      'displayName': 'Chatbot',
-      'representativeType': 'BOT'
+-d '{
+  "messageId": "'$(uuidgen)'",
+  "text": "Hello, world!",
+  "fallback": "Hello, world!\n\nReply with \"Hello\" or \"Hi!\"",
+  "suggestions": [
+    {
+      "reply": {
+        "text": "Hello",
+        "postbackData": "hello-formal"
+      }
     },
-  }"
+    {
+      "reply": {
+        "text": "Hi!",
+        "postbackData": "hello-informal"
+      }
+    }
+  ],
+  "representative": {
+    "avatarImage": "https://developers.google.com/identity/images/g-logo.png",
+    "displayName": "Chatbot",
+    "representativeType": "BOT"
+  }
+}'
